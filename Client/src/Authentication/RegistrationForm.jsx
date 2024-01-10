@@ -118,6 +118,8 @@
 
 // export default RegistrationForm;
 
+//------------------------------------------------------
+
 import React, { useEffect, useState } from "react";
 import "./RegistrationForm.css";
 import axios from "axios"; // Import Axios library
@@ -186,9 +188,9 @@ const RegistrationForm = () => {
 
       if (postResponse.status === 201) {
         // Save user to current session
-        formData.id = usersArray.length + 2;
-        formData.username = [];
-        formData.email = [];
+        id = usersArray.length + 2;
+        username = "";
+        email = "";
         sessionStorage.setItem("user", JSON.stringify(formData));
         console.log("User successfully created:", formData);
 

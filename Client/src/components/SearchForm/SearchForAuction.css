@@ -1,4 +1,4 @@
-/* SearchComponent styles */
+/* SearchComponent styles
 div {
   margin-bottom: 15px;
 }
@@ -32,7 +32,7 @@ li {
 }
 
 /* Modal styles */
-.ReactModal__Overlay {
+/* .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 300ms ease-in-out;
 }
@@ -43,4 +43,4 @@ li {
 
 .ReactModal__Overlay--before-close {
   opacity: 0;
-}
+} */

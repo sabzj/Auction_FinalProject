@@ -4,16 +4,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-// const UsersUrl = "https://6582f1ce02f747c8367aaca4.mockapi.io/viewData";
-// import axios from "axios";
-// import IconButtons from "./IconButtons.jsx";
-{
-  /* <FontAwesomeIcon icon="fa-sharp fa-solid fa-megaphone" /> */
-}
 
 import "./navbarComponent.css";
 import { categoriesArray } from "../utils/categoriesObject";
-import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
 // import LogInMainPage from "../login/LogInMainPage";
 
 const NavbarComponent = () => {
@@ -42,14 +35,6 @@ const NavbarComponent = () => {
   const toggleCategoriesDropdown = () => {
     setCategoriesDropdown(!categoriesDropdown);
   };
-
-  // useEffect(async () => {
-  //   async function yazeed() {
-  //     const response = await axios.get(UsersUrl);
-  //     console.log(response.data);
-  //   }
-  //   yazeed();
-  // }, []);
 
   function handleCategories() {
     setCategoriesDropdown((prev) => !prev);
