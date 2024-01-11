@@ -7,7 +7,7 @@ import Image12 from "../assets/imgs/saw.jpg";
 import Image13 from "../assets/imgs/wood cutter.jpg";
 import Image14 from "../assets/imgs/stereosystem.jpg";
 import BigImage from "../assets/imgs/Tracktor.jpg";
-// import "./auctionsOnMainPage.css";
+import "../pages/AuctionsOnFirstPage/auctionsOnMainPage.css";
 
 const AuctionsCardsOnMain = () => {
   return (

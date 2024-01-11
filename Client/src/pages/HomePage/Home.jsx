@@ -1,6 +1,6 @@
 import React from "react";
 
-import GroupRecommendAuctions from "./AllAuctions";
+import GroupRecommendAuctions from "../AuctionsOnFirstPage/AllAuctions";
 
 function Home() {
   return (

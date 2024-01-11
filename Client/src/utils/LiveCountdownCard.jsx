@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import img4 from "../assets/imgs/live auction car.jpg";
-import img5 from "../assets/imgs/live auction fancy diamond.jpg";
-import img6 from "../assets/imgs/live auction machine.jpg";
-import img7 from "../assets/imgs/live auction mobile house.jpg";
-import "./allauctions.css";
+// import img4 from "../assets/imgs/live auction car.jpg";
+// import img5 from "../assets/imgs/live auction fancy diamond.jpg";
+// import img6 from "../assets/imgs/live auction machine.jpg";
+// import img7 from "../assets/imgs/live auction mobile house.jpg";
+// import "./allauctions.css";
 const LiveCountdownCard = ({ title, to, imageUrl }) => {
   const [countdown, setCountdown] = useState(60);
   const [auctions, setAuctions] = useState([]);

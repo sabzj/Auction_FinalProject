@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import "./navbarComponent.css";
+// import "./navbarComponent.css";
 import { categoriesArray } from "../utils/categoriesObject";
-// import LogInMainPage from "../login/LogInMainPage";
+// import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
 
 const NavbarComponent = () => {
-  const [activeLink, setActiveLink] = useState("/");
   const [categoriesDropdown, setCategoriesDropdown] = useState(false);
   const [categoriesSubs, setCategoriesSubs] = useState([]);
 
-  function handleCategoryClick(category) {
+  const handleCategoryClick = (category) => {
     const selectedCategory = categoriesArray.find(
       (c) => c.category === category
     );
@@ -25,53 +23,57 @@ const NavbarComponent = () => {
       console.error("Category not found");
       setCategoriesSubs([]);
     }
-  }
-  // console.log(categoriesSubs);
+  };
 
   const handleLinkClick = (link) => {
-    setActiveLink(link);
+    // Add any additional logic related to link clicks
   };
 
   const toggleCategoriesDropdown = () => {
-    setCategoriesDropdown(!categoriesDropdown);
+    setCategoriesDropdown((prev) => !prev);
   };
 
-  function handleCategories() {
-    setCategoriesDropdown((prev) => !prev);
-  }
+  const handleCategories = () => {
+    toggleCategoriesDropdown(); // Combine toggle logic for better consistency
+  };
+
   return (
     <Navbar expand="lg" className="navbar-container">
       <div className="basic-navbar-nav">
-        {/* <LogInMainPage /> */}
-        {/* <IconButtons /> */}
-        <div id="basic-navbar-nav">
-          <Nav className="nav-item">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-            <Nav.Link as={Link} to="/about">
-              About
-            </Nav.Link>
-            <Nav.Link as={Link} to="/allAuctions">
-              All Actions
-            </Nav.Link>
-            <Nav.Link as={Link} to="/services">
-              Services
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
-              onClick={handleCategories}
-              style={{ color: "white" }}
-            >
-              Categories{" "}
-              {categoriesDropdown ? (
-                <span>&#11161;</span>
-              ) : (
-                <span>&#11163;</span>
-              )}
-            </Nav.Link>
-          </Nav>
-        </div>
+        <Nav className="nav-item">
+          <Nav.Link as={Link} to="/" onClick={() => handleLinkClick("/")}>
+            Home
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/about"
+            onClick={() => handleLinkClick("/about")}
+          >
+            About
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/allAuctions"
+            onClick={() => handleLinkClick("/allAuctions")}
+          >
+            All Actions
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/services"
+            onClick={() => handleLinkClick("/services")}
+          >
+            Services
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            onClick={handleCategories}
+            style={{ color: "white" }}
+          >
+            Categories{" "}
+            {categoriesDropdown ? <span>&#11161;</span> : <span>&#11163;</span>}
+          </Nav.Link>
+        </Nav>
         {categoriesDropdown && (
           <div className="dropdownFather">
             {categoriesArray.map((category) => (
@@ -102,25 +104,24 @@ const NavbarComponent = () => {
       </div>
 
       <div className="logInRegister">
-        <Nav.Link as={Link} to="/login" className="nav-item">
+        <Nav.Link
+          as={Link}
+          to="/login"
+          className="nav-item"
+          onClick={() => handleLinkClick("/login")}
+        >
           LogIn
         </Nav.Link>
-        <Nav.Link as={Link} to="/Register" className="nav-item">
+        <Nav.Link
+          as={Link}
+          to="/register"
+          className="nav-item"
+          onClick={() => handleLinkClick("/register")}
+        >
           Register
         </Nav.Link>
       </div>
-      {/* <Form className="d-flex">
-          <Form.Control
-            type="search"
-            id="item"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form> */}
-
-      {/* Modal */}
+      {/* Add your search form or other components here */}
     </Navbar>
   );
 };
