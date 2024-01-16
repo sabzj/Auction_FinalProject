@@ -4,16 +4,18 @@ import STATUS_CODE from "../constants/statusCodes.js";
 // Function to create a new auction
 export const createAuction = async (req, res, next) => {
   try {
-    // Access authenticated user information from req.user
-    const authenticatedUser = req.user;
+    console.log(req.body);
 
-    // Your logic to create a new auction, e.g., req.body contains auction details
+    //  create a new auction
+    const { title, description, address, startprice, createdBy, category } =
+      req.body;
     const newAuction = await Bid.create({
-      title: req.body.title,
-      description: req.body.description,
-      startprice: req.body.startprice,
-      currentprice: req.body.currentprice,
-      createdBy: authenticatedUser._id, // Assuming you have a createdBy field in your schema
+      title,
+      description,
+      startprice,
+      address,
+      createdBy,
+      category,
     });
 
     res.status(STATUS_CODE.CREATED).send(newAuction);
@@ -25,8 +27,10 @@ export const createAuction = async (req, res, next) => {
 // Function to get all auctions
 export const getAllAuctions = async (req, res, next) => {
   try {
-    const auctions = await Bid.find();
-    res.json(auctions);
+    const auctions = await Bid.find({});
+    res.status(STATUS_CODE.OK);
+    res.send(auctions);
+    console.log(auctions);
   } catch (error) {
     next(error);
   }
@@ -37,6 +41,7 @@ export const getAuctionById = async (req, res, next) => {
   try {
     //get the id from params
     const { id } = req.params;
+
     if (!isValidObjectId(id)) {
       throw new Error("ID not Valid");
     }
@@ -48,7 +53,7 @@ export const getAuctionById = async (req, res, next) => {
       throw new Error("auction not found");
     }
     //send the auction
-    return res.json(auction);
+    return res.send(auction);
   } catch (error) {
     next(error);
   }
@@ -57,22 +62,15 @@ export const getAuctionById = async (req, res, next) => {
 // Function to update an existing auction
 export const updateAuction = async (req, res, next) => {
   try {
-    // Access authenticated user information from req.user
-    const authenticatedUser = req.user;
+    const { id } = req.params;
 
-    // Your logic to update an existing auction, e.g., req.params.id contains auction ID
-    const updatedAuction = await Bid.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          title: req.body.title,
-          description: req.body.description,
-          startprice: req.body.startprice,
-          currentprice: req.body.currentprice,
-        },
-      },
-      { new: true }
-    );
+    // Access authenticated user information from req.user
+    // const authenticatedUser = req.user;
+
+    // update an existing auction, contains auction ID
+    const updatedAuction = await Bid.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
 
     if (!updatedAuction) {
       res.status(STATUS_CODE.NOT_FOUND).send({ error: "Auction not found" });
@@ -98,11 +96,12 @@ export const updateAuction = async (req, res, next) => {
 // Function to delete an existing auction
 export const deleteAuction = async (req, res, next) => {
   try {
+    const { id } = req.params;
     // Access authenticated user information from req.user
-    const authenticatedUser = req.user;
+    // const authenticatedUser = req.user;
 
-    // Your logic to delete an existing auction, e.g., req.params.id contains auction ID
-    const deletedAuction = await Bid.findByIdAndRemove(req.params.id);
+    // delete an existing auction, contains auction ID
+    const deletedAuction = await Bid.findByIdAndRemove(id);
 
     if (!deletedAuction) {
       res.status(STATUS_CODE.NOT_FOUND).send({ error: "Auction not found" });

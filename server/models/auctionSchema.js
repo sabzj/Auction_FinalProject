@@ -8,6 +8,13 @@ const auctionSchema = new mongoose.Schema(
       minlength: 2,
       trim: true,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      // type: String,
+
+      ref: "User",
+      required: true,
+    },
     description: {
       type: String,
       required: true,
@@ -21,13 +28,17 @@ const auctionSchema = new mongoose.Schema(
     },
     currentprice: {
       type: Number,
-      required: true,
       default: 0,
     },
+    address: {
+      type: String,
+      required: true,
+      minlength: 5,
+      trim: true,
+    },
   },
-  {
-    timestamps: true,
-  }
+
+  { timestamps: true }
 );
 
 const Bid = mongoose.model("Bid", auctionSchema);

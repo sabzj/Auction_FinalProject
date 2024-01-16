@@ -6,14 +6,22 @@ import User from "../models/userSchema.js";
 export const createUser = async (req, res, next) => {
   try {
     //* gett the data from body
-    const { username, email, password, role } = req.body;
+    const { name, email, creditcardNumber, password, role } = req.body;
+    console.log(req.body);
+    console.log(creditcardNumber.length);
+
     //* if the user correctly filled the fields or no field missing
-    if ((!email, password, role)) {
-      res.status(STATUS_CODE.NOT_FOUND);
+    if (!(name && email && password && creditcardNumber)) {
+      res.status(STATUS_CODE.BAD_REQUEST);
       throw new Error("Email, password and role are required");
     }
+    if (creditcardNumber.length < 16) {
+      console.log("i am in credit");
+      res.status(STATUS_CODE.BAD_REQUEST);
+      throw new Error("Creditcard number must be at least 16 digits long");
+    }
     //* find the user in DB
-    const checkUserInDb = await UserActivation.findOne({ email });
+    const checkUserInDb = await User.findOne({ email });
     // check if user exist
     if (checkUserInDb) {
       res.status(STATUS_CODE.NOT_FOUND);
@@ -24,11 +32,13 @@ export const createUser = async (req, res, next) => {
     console.log(hashedPassword);
     // create new user
     const newUser = await User.create({
-      username,
+      name,
       email,
-      password,
+      creditcardNumber,
+      password: hashedPassword,
       role,
     });
+    res.status(STATUS_CODE.CREATED).json(newUser);
   } catch (error) {
     next(error);
   }
@@ -64,7 +74,7 @@ export const loginUser = async (req, res, next) => {
       }
     );
 
-    res.status(STATUS_CODE.OK).json({ token });
+    res.status(STATUS_CODE.OK).json({ token, id: user._id, email: user.email });
   } catch (error) {
     next(error);
   }

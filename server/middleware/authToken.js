@@ -5,7 +5,7 @@ import User from "../models/userSchema.js";
 const authCheckMiddleware = async (req, res, next) => {
   try {
     // Extract the token from the Authorization header
-    const token = req.header("Authorization").replace("Bearer ", "");
+    const token = req.header("Authorization").split("Bearer ")[1];
 
     if (!token) {
       res.status(STATUS_CODE.UNAUTHORIZED);
