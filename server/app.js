@@ -6,7 +6,7 @@ import usersRouter from "./routes/users.routes.js";
 import auctionsRouter from "./routes/auctions.routes.js";
 import mailerRouter from "./routes/mailer.routes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
-import uploadRouter from "./controllers/cloudinaryRoute.js";
+import uploadRouter from "./routes/cloudinary.routes.js";
 // const uploadRouter = require("./controllers/cloudinaryRoute.js");
 
 const app = express();

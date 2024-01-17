@@ -21,22 +21,25 @@
 
 // module.exports = upload;
 //================================================================================================
-// const multer = require("multer");
+
 import multer from "multer";
 import path from "path";
-// const path = require("path");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, callback) {
-    // Specify the destination folder where files will be stored
-    callback(null, "./uploads"); // Adjust the path accordingly
-  },
-  filename: function (req, file, callback) {
-    // Specify how the file should be named
-    callback(null, Date.now() + "-" + file.originalname);
-  },
-});
+const storage = multer.diskStorage({});
+const imageFileFilter = (req, file, callback) => {
+  console.log(file);
 
-const upload = multer({ storage: storage });
+  if (!file.mimetype.startsWith("image")) {
+    callback("Support only image files", false);
+  }
+  callback(null, true);
+};
+
+const upload = multer({ storage, imageFileFilter });
+
+// const storage = new multer.memoryStorage();
+// const upload = multer({
+//   storage,
+// });
 // module.exports = upload;
 export default upload;
