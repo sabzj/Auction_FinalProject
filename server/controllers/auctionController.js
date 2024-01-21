@@ -1,5 +1,7 @@
 import Bid from "../models/auctionSchema.js";
 import STATUS_CODE from "../constants/statusCodes.js";
+import { uploadImage } from "./cloudinaryController.js";
+import { isValidObjectId } from "mongoose";
 
 // Function to create a new auction
 export const createAuction = async (req, res, next) => {
@@ -9,6 +11,12 @@ export const createAuction = async (req, res, next) => {
     //  create a new auction
     const { title, description, address, startprice, createdBy, category } =
       req.body;
+    //! do the validation here
+    const { file } = req;
+    //! do the validation here
+    const { url, public_id } = await uploadImage(file.path);
+    //! do the validation here
+
     const newAuction = await Bid.create({
       title,
       description,
@@ -16,6 +24,8 @@ export const createAuction = async (req, res, next) => {
       address,
       createdBy,
       category,
+      image: url,
+      publicId: public_id,
     });
 
     res.status(STATUS_CODE.CREATED).send(newAuction);

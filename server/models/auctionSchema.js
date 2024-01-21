@@ -9,7 +9,7 @@ const auctionSchema = new mongoose.Schema(
       trim: true,
     },
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.String,
       // type: String,
 
       ref: "User",
@@ -35,6 +35,13 @@ const auctionSchema = new mongoose.Schema(
       required: true,
       minlength: 5,
       trim: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    publicId: {
+      type: String,
     },
   },
 

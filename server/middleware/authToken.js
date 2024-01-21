@@ -5,6 +5,14 @@ import User from "../models/userSchema.js";
 const authCheckMiddleware = async (req, res, next) => {
   try {
     // Extract the token from the Authorization header
+    const authorizationHeader = req.header("Authorization");
+    console.log(req.headers);
+
+    if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+      res.status(STATUS_CODE.UNAUTHORIZED);
+      throw new Error("Authorization failed: Invalid token format");
+    }
+
     const token = req.header("Authorization").split("Bearer ")[1];
 
     if (!token) {

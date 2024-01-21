@@ -6,12 +6,22 @@ import User from "../models/userSchema.js";
 export const createUser = async (req, res, next) => {
   try {
     //* gett the data from body
-    const { name, email, creditcardNumber, password, role } = req.body;
+    const {
+      name,
+      email,
+      creditcardNumber,
+      password,
+      cvv,
+      role,
+      expirationDate,
+    } = req.body;
     console.log(req.body);
     console.log(creditcardNumber.length);
 
     //* if the user correctly filled the fields or no field missing
-    if (!(name && email && password && creditcardNumber)) {
+    if (
+      !(name && email && password && creditcardNumber && cvv && expirationDate)
+    ) {
       res.status(STATUS_CODE.BAD_REQUEST);
       throw new Error("Email, password and role are required");
     }
@@ -20,6 +30,7 @@ export const createUser = async (req, res, next) => {
       res.status(STATUS_CODE.BAD_REQUEST);
       throw new Error("Creditcard number must be at least 16 digits long");
     }
+
     //* find the user in DB
     const checkUserInDb = await User.findOne({ email });
     // check if user exist
@@ -35,6 +46,8 @@ export const createUser = async (req, res, next) => {
       name,
       email,
       creditcardNumber,
+      expirationDate,
+      cvv,
       password: hashedPassword,
       role,
     });
