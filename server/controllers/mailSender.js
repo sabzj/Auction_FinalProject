@@ -8,7 +8,7 @@ export const sendEmail = (req, res, next) => {
   try {
     const { to, subject, message } = req.body;
     const emailOptions = emailConfig(to, subject, message);
-
+    console.log(req.body);
     if (!(to && subject && message)) {
       res.status(STATUS_CODE.BAD_REQUEST).send("Please fill all the fields");
     }

@@ -7,7 +7,7 @@ export const createUser = async (req, res, next) => {
   try {
     //* gett the data from body
     const {
-      name,
+      username,
       email,
       creditcardNumber,
       password,
@@ -20,7 +20,14 @@ export const createUser = async (req, res, next) => {
 
     //* if the user correctly filled the fields or no field missing
     if (
-      !(name && email && password && creditcardNumber && cvv && expirationDate)
+      !(
+        username &&
+        email &&
+        password &&
+        creditcardNumber &&
+        cvv &&
+        expirationDate
+      )
     ) {
       res.status(STATUS_CODE.BAD_REQUEST);
       throw new Error("Email, password and role are required");
@@ -43,7 +50,7 @@ export const createUser = async (req, res, next) => {
     console.log(hashedPassword);
     // create new user
     const newUser = await User.create({
-      name,
+      username,
       email,
       creditcardNumber,
       expirationDate,
@@ -96,7 +103,7 @@ export const loginUser = async (req, res, next) => {
 export const userProfile = async (req, res, next) => {
   try {
     // Retrieve user information from the authenticated user's token (You might want to implement authentication middleware for this)
-    const user = req.user;
+    const user = req.username;
 
     res.status(STATUS_CODE.OK).json(user);
   } catch (error) {

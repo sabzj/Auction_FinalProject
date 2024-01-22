@@ -6,6 +6,7 @@ const authCheckMiddleware = async (req, res, next) => {
   try {
     // Extract the token from the Authorization header
     const authorizationHeader = req.header("Authorization");
+    console.log("auth ", authorizationHeader);
     console.log(req.headers);
 
     if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
@@ -14,23 +15,25 @@ const authCheckMiddleware = async (req, res, next) => {
     }
 
     const token = req.header("Authorization").split("Bearer ")[1];
-
+    console.log("token -'" + token + "'");
     if (!token) {
       res.status(STATUS_CODE.UNAUTHORIZED);
       throw new Error("Authorization failed: No token provided");
     }
 
     // Verify the token
-    const userSecretKey = SERVERKEY;
-    try {
-      const decoded = jwt.verify(token, userSecretKey);
-      // Find the user in the database based on the decoded token
+    const userSecretKey = process.env.SERVERKEY;
+    console.log("userSecretKey ", userSecretKey);
+    const decoded = jwt.verify(token, userSecretKey);
+    console.log("decoded ", decoded);
+    // Find the user in the database based on the decoded token
+    if (decoded) {
       const user = await User.findOne({
         _id: decoded.id,
         email: decoded.email,
         userType: decoded.userType,
       });
-
+      console.log("user ", user);
       if (!user) {
         res.status(STATUS_CODE.UNAUTHORIZED);
         throw new Error("Authorization failed: User not found");
@@ -41,7 +44,7 @@ const authCheckMiddleware = async (req, res, next) => {
 
       // Continue to the next middleware or route handler
       next();
-    } catch (error) {
+    } else {
       res.status(STATUS_CODE.UNAUTHORIZED);
       throw new Error("Authorization failed: Invalid token");
     }

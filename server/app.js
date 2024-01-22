@@ -17,7 +17,7 @@ dotenv.config();
 // To handle CORS fors do "npm i cors"
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your React app's origin
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
