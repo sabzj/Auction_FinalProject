@@ -6,9 +6,12 @@ import AllAuctions from "../src/Pages/AllAuctions";
 import ViewDetails from "../src/components/layout/ViewCardPage";
 import Header from "./components/layout/Header";
 import Login from "./components/login/LogIn";
-import AuthContextProvider from "./context/authContext/authContexProvider";
+// import AuthContextProvider from "./context/authContext/authContexProvider";
 import RegistrationForm from "./components/Register/RegistrationForm";
 import ContactForm from "./components/layout/ContactForm";
+import AuctionContextProvider from "./context/auctionContext/auctionContextProvider";
+import CreateAuctionForm from "./components/layout/CreateAuctionForm";
+import authContext from "./context/authContext/authContexProvider";
 
 const App = ({ children }) => {
   //   const [cardData, setCardData] = useState([]);
@@ -30,7 +33,8 @@ const App = ({ children }) => {
 
   return (
     <BrowserRouter>
-      <AuthContextProvider>
+      <AuctionContextProvider />
+      <authContext>
         <NavbarComponent />
 
         <Routes>
@@ -40,9 +44,11 @@ const App = ({ children }) => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/send-email" element={<ContactForm />} />
+          <Route path="/createAuction" element={<CreateAuctionForm />} />
         </Routes>
         {children}
-      </AuthContextProvider>
+      </authContext>
+      <AuctionContextProvider />
     </BrowserRouter>
   );
 };

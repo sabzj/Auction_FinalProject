@@ -6,13 +6,13 @@ export const auctionContext = createContext();
 function AuctionContextProvider({ children }) {
   // using the axios.get() method to get the auction data from the server.
   // and then emit the auction data to the socket.
-  const getOneauction = async (model, socket) => {
-    const url = `http://localhost:2626/auctions/${model}`;
+  const getOneauction = async (category, socket) => {
+    const url = `http://localhost:2626/auctions/${category}`;
     try {
       const response = await axios.get(url, {
         withCredentials: true,
       });
-      socket.emit("bid", response.data.data.auction, model);
+      socket.emit("bid", response.data.data.auction, category);
     } catch (error) {
       console.error(error);
     }
