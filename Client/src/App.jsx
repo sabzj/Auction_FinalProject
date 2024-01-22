@@ -8,6 +8,7 @@ import Header from "./components/layout/Header";
 import Login from "./components/login/LogIn";
 import AuthContextProvider from "./context/authContext/authContexProvider";
 import RegistrationForm from "./components/Register/RegistrationForm";
+import ContactForm from "./components/layout/ContactForm";
 
 const App = ({ children }) => {
   //   const [cardData, setCardData] = useState([]);
@@ -38,6 +39,7 @@ const App = ({ children }) => {
           <Route path="/view/:id" element={<ViewDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/send-email" element={<ContactForm />} />
         </Routes>
         {children}
       </AuthContextProvider>

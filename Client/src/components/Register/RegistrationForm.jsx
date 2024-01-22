@@ -1,122 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
-// const UsersUrl = "http://localhost:2626/users/register";
-
-// const RegistrationForm = () => {
-//   const [formData, setFormData] = useState({
-//     username: "",
-//     email: "",
-//     password: "",
-//     confirmPassword: "",
-//     creditcardNumber: "",
-//     isAdmin: false,
-//   });
-
-//   const handleChange = (e) => {
-//     const { id, value, type, checked } = e.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [id]: type === "checkbox" ? checked : value,
-//     }));
-//   };
-
-//   const showError = (input, message) => {
-//     const errorDiv = document.getElementById(input.id + "Error");
-//     errorDiv.textContent = message;
-//     input.classList.add("error");
-//   };
-
-//   const handleFormSubmit = async (e) => {
-//     e.preventDefault();
-
-//     let isValid = true;
-
-//     if (formData.username.length < 3) {
-//       showError(e.target.username, "Username must be at least 3 characters");
-//       isValid = false;
-//     }
-
-//     if (isValid) {
-//       await sendUserData();
-//     }
-//   };
-
-//   const sendUserData = async () => {
-//     try {
-//       const response = await axios.get(UsersUrl);
-//       setUsersArray(response.data);
-
-//       const existingUser = usersArray.find(
-//         (user) => user.email === formData.email
-//       );
-
-//       if (existingUser) {
-//         console.log("User already exists");
-//         return;
-//       }
-
-//       const postResponse = await axios.post(UsersUrl, formData);
-
-//       if (postResponse.status === 201) {
-//         sessionStorage.setItem("user", JSON.stringify(formData));
-
-//         // Redirect to another page after a successful POST
-//         setTimeout(() => {
-//           window.location.href = "AllAuctions.html";
-//         }, 3000);
-//       } else {
-//         throw new Error("Failed to create user");
-//       }
-//     } catch (error) {
-//       console.error("Error during registration:", error);
-//     }
-//   };
-
-//   return (
-//     <div className="container">
-//       <form onSubmit={handleFormSubmit}>
-//         Username:{" "}
-//         <input
-//           type="text"
-//           id="username"
-//           value={formData.username}
-//           onChange={handleChange}
-//         />
-//         Email:{" "}
-//         <input
-//           type="text"
-//           id="email"
-//           value={formData.email}
-//           onChange={handleChange}
-//         />
-//         Password:{" "}
-//         <input
-//           type="text"
-//           id="password"
-//           value={formData.password}
-//           onChange={handleChange}
-//         />
-//         Confirm Password:{" "}
-//         <input
-//           type="text"
-//           id="confirmPassword"
-//           value={formData.confirmPassword}
-//           onChange={handleChange}
-//         />
-//         creditcardNumber:{" "}
-//         <input
-//           type="text"
-//           id="creditcardNumber"
-//           value={formData.creditcardNumber}
-//           onChange={handleChange}
-//         />
-//         <button type="submit">Submit</button>
-//       </form>
-//     </div>
-//   );
-// };
-
 // export default RegistrationForm;
 import { FaEye } from "react-icons/fa";
 import React, { useState } from "react";
@@ -137,6 +18,8 @@ const RegistrationForm = () => {
     isAdmin: false,
   });
   const navigate = useNavigate();
+  const [viewPass, setViewPass] = useState(false);
+
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -144,8 +27,6 @@ const RegistrationForm = () => {
       [id]: type === "checkbox" ? checked : value,
     }));
   };
-
-  const [viewPass, setViewPass] = useState(false);
 
   const showError = (input, message) => {
     const errorDiv = document.getElementById(input.id + "Error");
@@ -164,24 +45,27 @@ const RegistrationForm = () => {
     }
 
     if (isValid) {
+      console.log("Form Data:", formData);
       await sendUserData();
     }
   };
 
+  // const sendUserData = async () => {
+  //   try {
+  // const response = await axios.get(UsersUrl);
+  // const usersArray = response.data;
+
+  // const existingUser = usersArray.find(
+  //   (user) => user.email === formData.email
+  // );
+
+  // if (existingUser) {
+  //   console.log("User already exists");
+  //   return;
+  // }
+
   const sendUserData = async () => {
     try {
-      // const response = await axios.get(UsersUrl);
-      // const usersArray = response.data;
-
-      // const existingUser = usersArray.find(
-      //   (user) => user.email === formData.email
-      // );
-
-      // if (existingUser) {
-      //   console.log("User already exists");
-      //   return;
-      // }
-
       const postResponse = await axios.post(UsersUrl, formData, {
         withCredentials: true,
       });
@@ -196,8 +80,23 @@ const RegistrationForm = () => {
       } else {
         throw new Error("Failed to create user");
       }
+      // } catch (error) {
+      //   console.error("Error during registration:", error);
+      // }
     } catch (error) {
       console.error("Error during registration:", error);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error("Server responded with:", error.response.data);
+        console.error("Status code:", error.response.status);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("No response received from the server");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error setting up the request:", error.message);
+      }
     }
   };
 
@@ -289,8 +188,9 @@ const RegistrationForm = () => {
               type={viewPass ? "text" : "password"}
               id="creditcardNumber"
               value={formData.creditcardNumber}
+              maxLength={"16"}
               onChange={handleChange}
-              className="mt-1 p-2 border rounded-md w-full"
+              className="mt-1 p-2 border rounded-md w-fit"
             />
           </div>
           <div
@@ -298,6 +198,48 @@ const RegistrationForm = () => {
             className="text-red-500 text-xs"
           ></div>
         </div>
+        <label
+          htmlFor="cvv"
+          className="block text-sm font-medium text-gray-700"
+        >
+          cvv:
+        </label>
+        <div className="flex ">
+          <button
+            className="px-2"
+            onClick={() => {
+              setViewPass((prev) => !prev);
+            }}
+          >
+            <FaEye />
+          </button>
+          <input
+            type={viewPass ? "text" : "password"}
+            id="cvv"
+            value={formData.cvv}
+            maxLength={"3"}
+            onChange={handleChange}
+            className="mt-1 p-2 border rounded-md w-1/6"
+          />
+        </div>
+        <div id="cvvNumberError" className="text-red-500 text-xs"></div>
+        <div className="mb-4">
+          <label
+            htmlFor="expirationDate"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Expiration Date:
+          </label>
+          <input
+            type="text"
+            id="expirationDate"
+            value={formData.expirationDate}
+            onChange={handleChange}
+            className="mt-1 p-2 border rounded-md w-2/6"
+          />
+          <div id="expirationDateError" className="text-red-500 text-xs"></div>
+        </div>
+
         <button
           type="submit"
           className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
