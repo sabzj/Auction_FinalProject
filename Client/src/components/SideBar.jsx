@@ -112,7 +112,25 @@
 //   );
 // }
 import React from "react";
+import { RiAuctionFill } from "react-icons/ri";
+import { RiAuctionLine } from "react-icons/ri";
+import { AiOutlineMessage } from "react-icons/ai";
+import { IoCreateOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 const SideBar = () => {
+  const navigation = useNavigate();
+
+  const handlebutton1 = () => {
+    navigation("/liveauctions");
+  };
+  const handlebutton2 = () => {
+    navigation("/createAuction");
+    console.log("create AU");
+  };
+  const handlebutton3 = () => {
+    navigation("/send-email");
+  };
+
   return (
     <div
       id="sidebar-mini"
@@ -155,8 +173,9 @@ const SideBar = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
+              {/* <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> */}
+              <RiAuctionLine size={24} onClick={handlebutton1} />
+              {/* <polyline points="9 22 9 12 15 12 15 22" /> */}
             </svg>
             <span
               className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 text-xs text-white rounded-lg whitespace-nowrap dark:bg-neutral-700"
@@ -184,10 +203,11 @@ const SideBar = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              {/* <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> */}
+              {/* <circle cx="9" cy="7" r="4" /> */}
+              {/* <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" /> */}
+              <IoCreateOutline size={24} onClick={handlebutton2} />
             </svg>
             <span
               className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 text-xs text-white rounded-lg whitespace-nowrap dark:bg-neutral-700"
@@ -215,8 +235,9 @@ const SideBar = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
-              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+              {/* <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>*/}
+              {/* <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path> */}
+              <AiOutlineMessage size={24} onClick={handlebutton3} />
             </svg>
             <span
               className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 text-xs text-white rounded-lg whitespace-nowrap dark:bg-neutral-700"
