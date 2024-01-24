@@ -17,10 +17,8 @@ dotenv.config();
 // To handle CORS fors do "npm i cors"
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://65b15baa3cf8c432fadd4d5e--monumental-dodol-772dc0.netlify.app/",
-    ],
+    origin: "https://auction-final-project.vercel.app/",
+
     credentials: true,
   })
 );
