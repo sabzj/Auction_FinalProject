@@ -19,11 +19,12 @@ function AuctionContextProvider({ children }) {
   };
 
   // using the axios.put() method to send the updated auction data to the server.
-  const updateauction = async (auction) => {
-    const url = "http://localhost:2626/auctions";
+  const updateauction = async (auction, id) => {
+    const url = `http://localhost:2626/api/auctions/${id}`;
 
     try {
       const response = await axios.put(url, auction, { withCredentials: true });
+      return response.json();
       //   console.log(response.data);
     } catch (error) {
       console.error(error);

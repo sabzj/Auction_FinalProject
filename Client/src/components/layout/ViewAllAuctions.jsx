@@ -114,7 +114,7 @@ const ViewAllAuctions = () => {
   return (
     <div className="container mx-auto my-8">
       {/* <h1 className="text-4xl font-bold mb-6">All Auctions</h1> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 ml-5 lg:grid-cols-3 gap-[22]">
         {auctions.map((auction) => (
           // <div key={auction.id} className="bg-white rounded p-4 shadow-md">
           //   <img

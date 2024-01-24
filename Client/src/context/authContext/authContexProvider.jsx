@@ -17,9 +17,10 @@ function AuthContextProvider({ children }) {
     const authReady = async () => {
       try {
         // Make a GET request to the server to check if the user is authenticated
-        const res = await axios.get("http://localhost:2626/api/users/login", {
+        const res = await axios.post("http://localhost:2626/api/users/login", {
           withCredentials: true,
         });
+        console.log(res);
         // If the request was successful, set the authentication state to reflect the authenticated user
         if (res.status === 200) {
           dispatch({

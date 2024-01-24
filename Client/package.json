@@ -10,11 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@charon1212/shogi-ui": "^1.0.4",
+    "@emotion/styled": "^11.11.0",
     "axios": "^1.6.5",
+    "classnames": "^2.5.1",
+    "framer-motion": "^11.0.2",
+    "lucide-react": "^0.314.0",
+    "modal": "^1.2.0",
+    "nodejs-model": "^0.1.6",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "react-router-dom": "^6.21.3"
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.21.3",
+    "tw-elements": "^1.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

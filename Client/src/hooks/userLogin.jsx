@@ -9,30 +9,41 @@ function useLogin(api) {
   const [success, setSuccess] = useState(false);
   const { dispatch } = useContext(authContext);
   const navigate = useNavigate();
-  const login = async (username, password, navigate_to) => {
+  const login = async (email, password, navigate_to) => {
     try {
+      console.log("first");
       setLoading(true);
-      const res = await axios.post(
+      const res = await fetch(
         api,
         {
-          username,
-          password,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
         },
         { withCredentials: true }
       );
-
+      const data = await res.json();
+      console.log("second");
       dispatch({
         type: "LOGIN",
-        payload: res.data.data,
+        payload: data.data,
       });
+      console.log(data);
       navigate(navigate_to);
+      localStorage.setItem("token", data.token);
+      setSuccess(true);
       setLoading(false);
     } catch (error) {
       setLoading(false);
       setError(error);
     }
   };
-  return { login, error, loading, success };
+  return { login, error, loading, success, setSuccess };
 }
 
 export default useLogin;

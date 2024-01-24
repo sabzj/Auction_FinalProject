@@ -30,6 +30,7 @@ function CardTimerAndDetails({
       clearInterval(interval);
       clearTimeout(timeout);
     };
+    navigate;
   }, []);
 
   const formatTime = (time) => {
@@ -45,38 +46,26 @@ function CardTimerAndDetails({
     alert(`View Details for: ${ViewDetails}`);
   };
 
-  const handleClose = () => {
-    // You can add logic to close or remove the card
-    alert(`Close details for: ${title}`);
-  };
-
   return (
-    <div className="max-w-md mx-auto w-80 my-4 bg-white rounded-md overflow-hidden shadow-md">
+    <div className="flex flex-wrap max-w-md mx-auto w-[80%] my-4 bg-white rounded-md overflow-hidden shadow-md">
       <img className="w-full h-40 object-cover " src={image} alt={title} />
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{title}</h2>
         <p className="text-gray-600 mb-2">Current Bid: ${currentBid}</p>
         <p className="text-gray-600 mb-4">{description}</p>
-        <div className="flex justify-between">
+        <div className="flex ">
           <span className="text-blue-500">{createdby}</span>
           <span className="text-gray-700">{startprice}</span>
         </div>
-        <div className="flex justify-between items-center flex-col">
+        <div className="flex justify-between items-center  mb-2">
           <small className="text-muted">Countdown: {formatTime(timer)}</small>
-          <div className="space-x-2">
+          <div className="space-y-2">
             <Link
               to={`/view/${auctionId}`}
-              className="bg-green-800 text-white px-4 py-2 rounded"
+              className="bg-green-800 text-white px-4 py-2 mt-2 rounded"
             >
               View Details
             </Link>
-
-            <button
-              className="bg-yellow-700 text-white px-4 py-2 rounded"
-              onClick={handleClose}
-            >
-              Close
-            </button>
           </div>
         </div>
       </div>

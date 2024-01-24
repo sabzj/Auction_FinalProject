@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ViewPage = () => {
   const { id } = useParams();
@@ -16,15 +16,24 @@ const ViewPage = () => {
     };
     fetchData();
   }, []);
+  console.log(auction);
+  const navigate = useNavigate();
   useEffect(() => {
     if (count == 0) return;
     const interval = setInterval(() => {
       setCount((prev) => prev - 1);
     }, 1000);
-
+    // fetch(`url/${currentBid.id}`,{
+    //   method:'PUT',
+    //   body: budge
+    // })
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(interval);
   }, [count]);
+  const handleClose = () => {
+    // You can add logic to close or remove the card
+    navigate("/allauctions");
+  };
 
   const submitBid = (e) => {
     e.preventDefault();
@@ -41,9 +50,10 @@ const ViewPage = () => {
       style={{
         padding: "50px",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-around",
         alignItems: "center",
-        gap: "30px",
+        maxWidth: "80%",
+        margin: "auto",
       }}
     >
       <div style={{ width: "15%" }}>
@@ -109,6 +119,12 @@ const ViewPage = () => {
           <div>{auction.country}</div>
           <div>{auction.details}</div>
           <div>{auction.category}</div>
+          <button
+            className="bg-yellow-700 text-white px-4 py-2 rounded"
+            onClick={handleClose}
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
