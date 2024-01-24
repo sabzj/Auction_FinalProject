@@ -43,6 +43,15 @@ const auctionSchema = new mongoose.Schema(
     publicId: {
       type: String,
     },
+    endDate: {
+      type: Date,
+      required: true,
+    },
+    status: {
+      type: String,
+      required: true,
+      default: "open",
+    },
   },
 
   { timestamps: true }

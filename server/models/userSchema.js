@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema({
         `${props.value} is not a valid CVV (must be 3 numbers)`,
     },
   },
+  budget: {
+    type: Number,
+    default: 10000,
+  },
   // Set a default role if not provided during user creation
   role: {
     type: String,

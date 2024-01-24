@@ -46,6 +46,32 @@ export const getAllAuctions = async (req, res, next) => {
   }
 };
 
+export const getAllLiveAuctions = async (req, res, next) => {
+  console.log("got here");
+  const openStatus = "open";
+  try {
+    const auctions = await Bid.find({ status: openStatus });
+    res.status(STATUS_CODE.OK);
+    res.send(auctions);
+    console.log(auctions);
+  } catch (error) {
+    res.send("no live auctions");
+  }
+};
+
+export const getAllCategories = async (req, res, next) => {
+  try {
+    const { title, address, category } = req.body;
+    const auctions = await Bid.find({ title, address, category });
+    res.status(STATUS_CODE.OK).send(auctions);
+    console.log(auctions);
+  } catch (error) {
+    res
+      .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
+      .send("Error fetching auctions");
+  }
+};
+
 // Function to getAuctionById
 export const getAuctionById = async (req, res, next) => {
   try {
@@ -76,7 +102,8 @@ export const updateAuction = async (req, res, next) => {
 
     // Access authenticated user information from req.user
     // const authenticatedUser = req.user;
-
+    const findAuc = await Bid.findById(id);
+    console.log(findAuc.id);
     // update an existing auction, contains auction ID
     const updatedAuction = await Bid.findByIdAndUpdate(id, req.body, {
       new: true,
@@ -88,14 +115,14 @@ export const updateAuction = async (req, res, next) => {
     }
 
     // Check if the authenticated user is the creator of the auction
-    if (
-      updatedAuction.createdBy.toString() !== authenticatedUser._id.toString()
-    ) {
-      res
-        .status(STATUS_CODE.UNAUTHORIZED)
-        .send({ error: "Not authorized to update this auction" });
-      return;
-    }
+    // if (
+    //   updatedAuction.createdBy.toString() !== authenticatedUser._id.toString()
+    // ) {
+    //   res
+    //     .status(STATUS_CODE.UNAUTHORIZED)
+    //     .send({ error: "Not authorized to update this auction" });
+    //   return;
+    // }
 
     res.status(STATUS_CODE.OK).send(updatedAuction);
   } catch (error) {

@@ -7,7 +7,7 @@ const authCheckMiddleware = async (req, res, next) => {
     // Extract the token from the Authorization header
     const authorizationHeader = req.header("Authorization");
     console.log("auth ", authorizationHeader);
-    console.log(req.headers);
+    // console.log(req.headers);
 
     if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
       res.status(STATUS_CODE.UNAUTHORIZED);
@@ -24,9 +24,11 @@ const authCheckMiddleware = async (req, res, next) => {
     // Verify the token
     const userSecretKey = process.env.SERVERKEY;
     console.log("userSecretKey ", userSecretKey);
+    console.log(token);
     const decoded = jwt.verify(token, userSecretKey);
     console.log("decoded ", decoded);
     // Find the user in the database based on the decoded token
+
     if (decoded) {
       const user = await User.findOne({
         _id: decoded.id,

@@ -30,7 +30,7 @@ export const createUser = async (req, res, next) => {
       )
     ) {
       res.status(STATUS_CODE.BAD_REQUEST);
-      throw new Error("Email, password and role are required");
+      throw new Error("Email, password  are required");
     }
     if (creditcardNumber.length < 16) {
       console.log("i am in credit");
@@ -39,7 +39,7 @@ export const createUser = async (req, res, next) => {
     }
 
     //* find the user in DB
-    const checkUserInDb = await User.findOne({ email });
+    const checkUserInDb = await User.findOne({ username, email });
     // check if user exist
     if (checkUserInDb) {
       res.status(STATUS_CODE.NOT_FOUND);
@@ -67,7 +67,7 @@ export const createUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    console.log(email, password);
     // Find the user in the database
     const user = await User.findOne({ email });
 
@@ -88,13 +88,24 @@ export const loginUser = async (req, res, next) => {
     // Create a JWT token for authentication
     const token = jwt.sign(
       { id: user._id, email: user.email },
-      "yourSecretKey",
+      process.env.SERVERKEY,
       {
-        expiresIn: "1h", // Token expires in 1 hour
+        expiresIn: "30d", // Token expires in 1 hour
       }
     );
 
-    res.status(STATUS_CODE.OK).json({ token, id: user._id, email: user.email });
+    if (user && isPasswordValid) {
+      res
+        .status(STATUS_CODE.OK)
+        .json({
+          token,
+          _id: user._id,
+          email: user.email,
+          budget: user.budget,
+          username: user.username,
+          role: user.role,
+        });
+    }
   } catch (error) {
     next(error);
   }
