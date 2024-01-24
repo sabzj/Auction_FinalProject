@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { categoriesArray } from "../categoriesObject";
 import axios from "axios";
-import useLogin from "../../Hooks/userLogin";
+import useLogin from "../../hooks/userLogin";
+
 // import Sidebar from "../SideBar";
 
 const NavbarComponent = () => {
