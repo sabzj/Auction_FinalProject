@@ -15,14 +15,12 @@ dotenv.config();
 // cors middleware
 
 // To handle CORS fors do "npm i cors"
-app.use(
-  cors({
-    origin: "https://auction-final-project.vercel.app/",
+app.use(cors());
+// {
+//   origin: "https://auction-final-project.vercel.app/",
 
-    credentials: true,
-  })
-);
-
+//   credentials: true,
+// }
 // Middleware to JSON parsing
 app.use(express.json());
 
