@@ -16,10 +16,19 @@ function AuthContextProvider({ children }) {
   useEffect(() => {
     const authReady = async () => {
       try {
+        const json = JSON.stringify({ email, password });
         // Make a GET request to the server to check if the user is authenticated
-        const res = await axios.post("http://localhost:2626/api/users/login", {
-          withCredentials: true,
-        });
+        const res = await axios.post(
+          "http://localhost:2626/api/users/login",
+          {
+            body: {
+              json,
+            },
+          },
+          {
+            withCredentials: true,
+          }
+        );
         console.log(res);
         // If the request was successful, set the authentication state to reflect the authenticated user
         if (res.status === 200) {
