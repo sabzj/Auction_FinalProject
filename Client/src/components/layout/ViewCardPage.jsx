@@ -10,7 +10,9 @@ const ViewPage = () => {
   const myBid = useRef();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:2626/api/auctions/${id}`);
+      const response = await fetch(
+        `https://new-auction-api.onrender.com/api/auctions/${id}`
+      );
       const result = await response.json();
       setAuction(result);
     };

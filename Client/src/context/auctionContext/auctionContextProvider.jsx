@@ -20,7 +20,7 @@ function AuctionContextProvider({ children }) {
 
   // using the axios.put() method to send the updated auction data to the server.
   const updateauction = async (auction, id) => {
-    const url = `http://localhost:2626/api/auctions/${id}`;
+    const url = `https://new-auction-api.onrender.com/api/auctions/${id}`;
 
     try {
       const response = await axios.put(url, auction, { withCredentials: true });

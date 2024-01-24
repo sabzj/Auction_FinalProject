@@ -16,7 +16,7 @@ const ContactForm = () => {
       };
 
       // Send the email by making a request to your server
-      const response = await fetch("http://localhost:2626/send-email", {
+      const response = await fetch("https://new-auction-api.onrender.com/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

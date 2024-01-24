@@ -14,19 +14,22 @@ const NavbarComponent = () => {
   // const [sidebarContent, setSidebarContent] = useState("");
 
   const { setSuccess, success } = useLogin(
-    "http://localhost:2626/api/users/login "
+    "https://new-auction-api.onrender.com/api/users/login "
   );
 
   useEffect(() => {
     // Fetch data based on the category and value
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:2626/api/auctions", {
-          // params: {
-          //   category,
-          //   value,
-          // },
-        });
+        const response = await axios.get(
+          "https://new-auction-api.onrender.com/api/auctions",
+          {
+            // params: {
+            //   category,
+            //   value,
+            // },
+          }
+        );
         setSearchResults(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

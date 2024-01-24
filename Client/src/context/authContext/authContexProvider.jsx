@@ -19,7 +19,7 @@ function AuthContextProvider({ children }) {
         const json = JSON.stringify({ email, password });
         // Make a GET request to the server to check if the user is authenticated
         const res = await axios.post(
-          "http://localhost:2626/api/users/login",
+          "https://new-auction-api.onrender.com/api/users/login",
           {
             body: {
               json,
@@ -50,9 +50,12 @@ function AuthContextProvider({ children }) {
 
   // logout function self explanatory
   const handleLogout = async () => {
-    const response = await axios.delete("http://localhost:2626/users/logout", {
-      withCredentials: true,
-    });
+    const response = await axios.delete(
+      "https://new-auction-api.onrender.com/users/logout",
+      {
+        withCredentials: true,
+      }
+    );
 
     dispatch({ type: "LOGOUT" });
   };

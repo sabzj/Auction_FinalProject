@@ -12,6 +12,7 @@ import AuctionContextProvider from "./context/auctionContext/auctionContextProvi
 import CreateAuctionForm from "./components/layout/CreateAuctionForm";
 import AuthContextProvider from "./context/authContext/authContexProvider";
 import CategoryPage from "./Pages/CategoryPage";
+import RandomItemsDisplay from "./components/layout/LiveAuctions";
 // import SideBar from "./components/SideBar";
 
 const App = ({ children }) => {
@@ -42,6 +43,7 @@ const App = ({ children }) => {
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/allauctions" element={<AllAuctions />} />
+          <Route path="/liveauctions" element={<RandomItemsDisplay />} />
           <Route path="/view/:id" element={<ViewDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegistrationForm />} />

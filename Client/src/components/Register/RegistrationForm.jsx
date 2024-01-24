@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const UsersUrl = "http://localhost:2626/api/users/register";
+const UsersUrl = "https://new-auction-api.onrender.com/api/users/register";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({

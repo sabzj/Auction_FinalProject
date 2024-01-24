@@ -85,7 +85,9 @@ const ViewAllAuctions = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:2626/api/auctions");
+        const response = await fetch(
+          "https://new-auction-api.onrender.com/api/auctions"
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

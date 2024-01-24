@@ -136,12 +136,15 @@ function CategoryPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:2626/api/auctions", {
-          // params: {
-          //   category,
-          //   value,
-          // },
-        });
+        const response = await axios.get(
+          "https://new-auction-api.onrender.com/api/auctions",
+          {
+            // params: {
+            //   category,
+            //   value,
+            // },
+          }
+        );
         setCategories(response.data);
         setNonChangedCategories(response.data);
       } catch (error) {

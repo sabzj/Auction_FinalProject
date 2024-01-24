@@ -3,13 +3,43 @@ import React, { useState, useEffect } from "react";
 const fetchDataFromDatabase = async () => {
   try {
     const response = await fetch(
-      "http://localhost:2626/api/auctions/liveauctions"
+      "https://new-auction-api.onrender.com/api/auctions/liveauctions"
     );
     const data = await response.json();
     return data;
   } catch (error) {
     throw new Error("Error fetching data from the database");
   }
+};
+
+const CountdownTimer = () => {
+  const [minutes, setMinutes] = useState(60);
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(myInterval);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(myInterval);
+    };
+  }, [minutes, seconds]);
+
+  return (
+    <h1>
+      {minutes}:{seconds}
+    </h1>
+  );
 };
 
 const RandomItemsDisplay = () => {
@@ -19,7 +49,6 @@ const RandomItemsDisplay = () => {
     const fetchRandomItems = async () => {
       try {
         const auctions = await fetchDataFromDatabase();
-        setRandomItems(auctions);
 
         // Shuffle the array randomly
         const shuffledItems = auctions.sort(() => Math.random() - 0.5);
@@ -34,52 +63,17 @@ const RandomItemsDisplay = () => {
       }
     };
 
-    const CountdownTimer = (props) => {
-      const { initialMinute = 0, initialSeconds = 0 } = props;
-      const [minutes, setMinutes] = useState(initialMinute);
-      const [seconds, setSeconds] = useState(initialSeconds);
-
-      useEffect(() => {
-        let myInterval = setInterval(() => {
-          if (seconds > 0) {
-            setSeconds(seconds - 1);
-          }
-          if (seconds === 0) {
-            if (minutes === 0) {
-              clearInterval(myInterval);
-            } else {
-              setMinutes(minutes - 1);
-              setSeconds(59);
-            }
-          }
-        }, 1000);
-
-        return () => {
-          clearInterval(myInterval);
-        };
-      }, [minutes, seconds]);
-
-      return (
-        <div>
-          {minutes === 0 && seconds === 0 ? null : (
-            <h1 className="text-4xl font-bold">
-              {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-            </h1>
-          )}
-        </div>
-      );
-    };
-
     fetchRandomItems();
-    CountdownTimer();
   }, []); // Empty dependency array to run the effect only once
-
+  console.log("[ randomAuctions ] >", randomAuctions);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {randomAuctions.map((item) => (
         <div key={item.id} className="p-4 border border-gray-300 rounded-md">
-          <h3 className="text-lg font-semibold mb-2">{item.name}</h3>
+          <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+          <img src={item.image} className="text-lg font-semibold mb-2" />
           <p className="text-gray-600">{item.description}</p>
+          <CountdownTimer />
         </div>
       ))}
     </div>
