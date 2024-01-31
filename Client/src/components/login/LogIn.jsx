@@ -176,18 +176,18 @@ function Login() {
       }}
     >
       <div className="backdrop" style={{ backdropFilter: "blur(2px)" }}>
-        <div className="h-screen w-full flex justify-center items-center bg-gradient-to-tr from-blue-900 to-blue-500">
-          <div className="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-blue-600">
-            <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-blue-600 backdrop">
+        <div className="h-screen w-full flex justify-center items-center bg-gradient-to-tr from-yellow-600 to-yellow-500">
+          <div className="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-gray-400">
+            <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-purple-300 backdrop">
               <h1 className="text-3xl md:text-4xl font-extrabold text-white my-2 md:my-0">
-                HartDev
+                BidAuctio
               </h1>
               <p className="mb-2 text-white hidden md:block font-mono">
                 search a new somethings
               </p>
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4">
-              <h3 className="mb-4 font-bold text-3xl flex items-center text-blue-500">
+              <h3 className="mb-4 font-bold text-3xl flex items-center text-purple-300">
                 LOGIN
               </h3>
               <form
@@ -199,20 +199,20 @@ function Login() {
                   type="email"
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
-                  className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                  className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-purple-300"
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                  className="px-4 py-2 w-full rounded border border-gray-300 text-base placeholder-gray-500 placeholder-opacity-50 shadow-sm focus:outline-none focus:border-blue-500"
+                  className="px-4 py-2 w-full rounded border border-gray-300 text-base placeholder-gray-500 placeholder-opacity-50 shadow-sm focus:outline-none focus:border-purple-300"
                 />
                 <button
                   onClick={() => {
                     login(email, password, "/");
                     // !error && navigate("/");
                   }}
-                  className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white focus:outline-none focus:ring rounded px-3 py-1"
+                  className="flex justify-center items-center bg-purple-500 hover:bg-purple-900 text-white focus:outline-none focus:ring rounded px-3 py-1"
                 >
                   <svg
                     className="w-5 h-5 inline"
@@ -235,7 +235,7 @@ function Login() {
                 Don't have an account?
                 <Link
                   to="/register"
-                  className="text-green-500 hover:text-green-600 mt-3 focus:outline-none font-bold underline"
+                  className="text-yellow-500 hover:bg-yellow-600 mt-3 focus:outline-none font-bold underline"
                 >
                   Register
                 </Link>

@@ -105,62 +105,6 @@ const NavbarComponent = () => {
                 >
                   Categories
                 </Link>
-                {/* <button
-                  className="text-white focus:outline-none"
-                  onClick={() => setCategoriesDropdown(!categoriesDropdown)}
-                > */}
-
-                {/* {categoriesDropdown ? (
-                    <span>&#9660;</span>
-                  ) : (
-                    <span>&#9654;</span>
-                  )} */}
-                {/* </button> */}
-                {/* {categoriesDropdown && (
-                  <div className="origin-top-left absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                    <div
-                      className="py-1"
-                      role="menu"
-                      aria-orientation="vertical"
-                      aria-labelledby="options-menu"
-                    >
-                      {categoriesArray.map((category) => (
-                        <div key={category.category}>
-                          <button
-                            className={`block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out ${
-                              selectedCategory === category.category
-                                ? "bg-gray-100"
-                                : ""
-                            }`}
-                            onClick={() =>
-                              handleCategoryClick(category.category)
-                            }
-                          >
-                            {category.category}
-                          </button>
-                          {selectedCategory === category.category && (
-                            <div className="pl-4">
-                              {category.values.map((subCategory, i) => (
-                                <Link
-                                  key={i}
-                                  // to={{
-                                  //   pathname: `/category/${subCategory}`,
-                                  //   state: { searchResults },
-                                  // }}
-                                  to={`/category/${subCategory}`}
-                                  className={`block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out`}
-                                  onClick={() => setCategoriesDropdown(false)}
-                                >
-                                  {subCategory}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )} */}
               </div>
             </div>
 

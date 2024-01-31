@@ -7,7 +7,7 @@ function AuctionContextProvider({ children }) {
   // using the axios.get() method to get the auction data from the server.
   // and then emit the auction data to the socket.
   const getOneauction = async (category, socket) => {
-    const url = `http://localhost:2626/auctions/${category}`;
+    const url = `https://new-auction-api.onrender.com/auctions/${category}`;
     try {
       const response = await axios.get(url, {
         withCredentials: true,

@@ -1,118 +1,5 @@
-// import React, { useState } from "react";
-
-// const Sidebar = ({ onSidebarButtonClick }) => {
-//   const [showSidebar, setShowSidebar] = useState(false);
-
-//   return (
-//     <>
-//       {showSidebar ? (
-//         <button
-//           className="flex text-4xl text-white items-center cursor-pointer fixed left-10 top-6 z-50"
-//           onClick={() => setShowSidebar(!showSidebar)}
-//         >
-//           x
-//         </button>
-//       ) : (
-//         <svg
-//           onClick={() => setShowSidebar(!showSidebar)}
-//           className="fixed z-30 flex items-center cursor-pointer left-10 top-6"
-//           fill="#2563EB"
-//           viewBox="0 0 100 80"
-//           width="40"
-//           height="40"
-//         >
-//           <rect width="100" height="10"></rect>
-//           <rect y="30" width="100" height="10"></rect>
-//           <rect y="60" width="100" height="10"></rect>
-//         </svg>
-//       )}
-
-//       <div
-//         className={`top-0 left-0 w-[35vw] bg-blue-600 p-10 pl-20 text-white fixed h-full z-40 ease-in-out duration-300 ${
-//           showSidebar ? "translate-x-0 " : "translate-x-full"
-//         }`}
-//       >
-//         {/* Your Sidebar content here */}
-//         <button
-//           className="mb-4 text-white text-lg"
-//           onClick={() => onSidebarButtonClick("Button 1 Clicked")}
-//         >
-//           Button 1
-//         </button>
-//         <button
-//           className="mb-4 text-white text-lg"
-//           onClick={() => onSidebarButtonClick("Button 2 Clicked")}
-//         >
-//           Button 2
-//         </button>
-//         <button
-//           className="mb-4 text-white text-lg"
-//           onClick={() => onSidebarButtonClick("Button 3 Clicked")}
-//         >
-//           Button 3
-//         </button>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Sidebar;
-
-// <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
-// <!-- Sidenav -->
-
-// import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
-// import { useContext, createContext, useState } from "react";
-
-// const SidebarContext = createContext();
-
-// export default function Sidebar({ children }) {
-//   const [expanded, setExpanded] = useState(true);
-
-//   return (
-//     <aside className="h-screen">
-//       <nav className="h-full flex flex-col bg-yellow-300 border-r shadow-sm">
-//         <div className="p-4 pb-2 flex justify-between items-center">
-//           <img
-//             src="/public/LOGO 2.png"
-//             className={`overflow-hidden transition-all ${
-//               expanded ? "w-32" : "w-0"
-//             }`}
-//             alt=""
-//           />
-//           <button
-//             onClick={() => setExpanded((curr) => !curr)}
-//             className="p-1.5 rounded-lg bg-red-600 hover:bg-gray-100"
-//           >
-//             {expanded ? <ChevronFirst /> : <ChevronLast />}
-//           </button>
-//         </div>
-
-//         <SidebarContext.Provider value={{ expanded }}>
-//           <ul className="flex-1 px-3">{children}</ul>
-//         </SidebarContext.Provider>
-
-//         <div className="border-t flex p-3">
-//           <img src="" alt="" className="w-10 h-10 rounded-md" />
-//           <div
-//             className={`
-//               flex justify-between items-center
-//               overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
-//           `}
-//           >
-//             <div className="leading-4">
-//               <h4 className="font-semibold">BidAuctio</h4>
-//               <span className="text-xs text-gray-600">info@bidauctio.com</span>
-//             </div>
-//             <MoreVertical size={20} />
-//           </div>
-//         </div>
-//       </nav>
-//     </aside>
-//   );
-// }
 import React from "react";
-import { RiAuctionFill } from "react-icons/ri";
+// import { RiAuctionFill } from "react-icons/ri";
 import { RiAuctionLine } from "react-icons/ri";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
@@ -145,7 +32,7 @@ const SideBar = () => {
               height="100"
               viewBox="0 0 100 100"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              // xmlns="http://www.w3.org/2000/svg"
             >
               <rect width="100" height="100" rx="10" fill="black" />
               <path
@@ -163,7 +50,7 @@ const SideBar = () => {
           >
             <svg
               className="flex-shrink-0 w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
+              // xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -181,7 +68,7 @@ const SideBar = () => {
               className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 text-xs text-white rounded-lg whitespace-nowrap dark:bg-neutral-700"
               role="tooltip"
             >
-              Home
+              {/* Home */}
             </span>
           </button>
         </div>
@@ -193,7 +80,7 @@ const SideBar = () => {
           >
             <svg
               className="flex-shrink-0 w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
+              // xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -213,7 +100,7 @@ const SideBar = () => {
               className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 text-xs text-white rounded-lg whitespace-nowrap dark:bg-neutral-700"
               role="tooltip"
             >
-              Users
+              {/* Users */}
             </span>
           </button>
         </div>
@@ -225,7 +112,7 @@ const SideBar = () => {
           >
             <svg
               className="flex-shrink-0 w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
+              // xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -243,7 +130,7 @@ const SideBar = () => {
               className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 text-xs text-white rounded-lg whitespace-nowrap dark:bg-neutral-700"
               role="tooltip"
             >
-              Notifications
+              {/* Notifications */}
             </span>
           </button>
         </div>

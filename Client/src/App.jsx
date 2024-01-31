@@ -16,23 +16,6 @@ import RandomItemsDisplay from "./components/layout/LiveAuctions";
 // import SideBar from "./components/SideBar";
 
 const App = ({ children }) => {
-  //   const [cardData, setCardData] = useState([]);
-
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           "https://6582f1ce02f747c8367aaca4.mockapi.io/viewData"
-  //         );
-  //         setCardData(response.data);
-  //       } catch (error) {
-  //         console.error("Error fetching data:", error);
-  //       }
-  //     };
-
-  //     fetchData();
-  //   }, []);
-
   return (
     <BrowserRouter>
       <AuctionContextProvider />
